@@ -1,0 +1,119 @@
+
+outils:
+  order: 15
+  label: Outils du portail
+  short: Outils
+  type: mysql
+  params:
+    connexion:
+      port: null
+      host: localhost
+      basename: portail
+      username: root
+      userpwd: eclipse
+    search: where
+    view: outils
+    fields: 
+      lien: ':lien'
+      nom: 'Outil'
+      description: 'Description'
+
+documents1:
+  order: 20
+  label: Documents du groupe - par nom
+  short: Docs
+  type: files
+  params:
+    url: 'http://srvweb/documents/index.php?'
+    options: 'titlemode=name&query=?&apicall'
+    fields: 
+      url: ':url'
+      nom: 'Nom'
+      type: 'Type'
+
+documents2:
+  order: 25
+  label: Documents du groupe - par contenu
+  short: Docs
+  type: files
+  params:
+    url: 'http://srvweb/documents/index.php?'
+    options: 'titlemode=content&query=?&apicall'
+    fields: 
+      url: ':url'
+      sample: '_sample'
+      caption: '_caption'
+      author: 'Auteur'
+      type: '_type'
+      modtime: '_modtime'
+      size: '_size'
+      title: 'Titre'
+    
+routagetel:
+  order: 5
+  label: Annuaire IP
+  short: Tél
+  type: mysql
+  params:
+    connexion:
+      port: null
+      host: 10.110.76.246
+      basename: kiplink
+      username: speeddial
+      userpwd: speedpass
+    search: where
+    view: speeddial
+    fields: 
+      number: 'Abrégé'
+      dial_number: 'Numéro'
+      comment: 'Libellé'
+
+providers:
+  order: 10
+  label: Fournisseurs
+  short: Fourn.
+  type: mysql
+  params:
+    connexion:
+      port: null
+      host: localhost
+      basename: portail
+      username: root
+      userpwd: eclipse
+    search: where
+    view: provider
+    fields: 
+      nom: 'Nom'
+      mail: 'Email'
+      contact1: 'Contact'
+      
+agences:
+  order: 12
+  label: Informations agences
+  short: Agences
+  type: mssql
+  params:
+    connexion:
+      port: 1433
+      host: 10.106.76.111
+      basename: winpneu
+      username: sa
+      userpwd: Logiwin06
+    search: where
+    view: agence
+    fields: 
+      c_agence: 'Code'
+      nom_agence: 'Nom'
+      adr1: 'Adresse1'
+      adr2: 'Adresse2'
+      adr3: 'Adresse3'                                   
+      dep: 'Dép.'
+      ville: 'Ville'
+      contact_resp: 'Responsable'                                        
+      contact_divers1: 'Contact1'
+      contact_divers2: 'Contact2'                                        
+      tel_1: 'Tél.'
+      fax: 'Fax'
+      n_siret: 'Siret'
+      divers: 'Divers'        
+            
