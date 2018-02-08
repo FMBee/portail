@@ -31,23 +31,23 @@ documents1:
       nom: 'Nom'
       type: 'Type'
 
-documents2:
-  order: 25
-  label: Documents du groupe - par contenu
-  short: Docs
-  type: files
-  params:
-    url: 'http://srvweb/documents/index.php?'
-    options: 'titlemode=content&query=?&apicall'
-    fields: 
-      url: ':url'
-      sample: '_sample'
-      caption: '_caption'
-      author: 'Auteur'
-      type: '_type'
-      modtime: '_modtime'
-      size: '_size'
-      title: 'Titre'
+#documents2:
+#  order: 25
+#  label: Documents du groupe - par contenu
+#  short: Docs
+#  type: files
+#  params:
+#    url: 'http://srvweb/documents/index.php?'
+#    options: 'titlemode=content&query=?&apicall'
+#    fields: 
+#      url: ':url'
+#      sample: '_sample'
+#      caption: '_caption'
+#      author: 'Auteur'
+#      type: '_type'
+#      modtime: '_modtime'
+#      size: '_size'
+#      title: 'Titre'
     
 routagetel:
   order: 5
