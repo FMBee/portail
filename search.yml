@@ -14,9 +14,9 @@ outils:
     search: where
     view: outils
     fields: 
-      lien: ':lien'
       nom: 'Outil'
       description: 'Description'
+      lien: ':Liens'
 
 documents1:
   order: 20
@@ -27,9 +27,9 @@ documents1:
     url: 'http://srvweb/documents/index.php?'
     options: 'titlemode=name&query=?&apicall'
     fields: 
-      url: ':url'
       nom: 'Nom'
       type: 'Type'
+      url: ':Liens'
 
 #documents2:
 #  order: 25
@@ -84,8 +84,10 @@ providers:
     view: provider
     fields: 
       nom: 'Nom'
-      mail: 'Email'
+      tel: 'Tél.'
+      fax: 'Fax'
       contact1: 'Contact'
+      mail: 'Email'
       
 agences:
   order: 12
@@ -102,18 +104,18 @@ agences:
     search: where
     view: agence
     fields: 
-      c_agence: 'Code'
       nom_agence: 'Nom'
+      c_agence: 'Code'
+      tel_1: 'Tél.'
+      fax: 'Fax'
+      contact_divers1: 'Contact1'
+      contact_resp: 'Responsable'                                        
+      contact_divers2: 'Contact2'                                        
       adr1: 'Adresse1'
       adr2: 'Adresse2'
       adr3: 'Adresse3'                                   
       dep: 'Dép.'
       ville: 'Ville'
-      contact_resp: 'Responsable'                                        
-      contact_divers1: 'Contact1'
-      contact_divers2: 'Contact2'                                        
-      tel_1: 'Tél.'
-      fax: 'Fax'
       n_siret: 'Siret'
       divers: 'Divers'        
             
