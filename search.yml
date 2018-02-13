@@ -3,6 +3,7 @@ outils:
   order: 15
   label: Outils du portail
   short: Outils
+  mode: basic
   type: mysql
   params:
     connexion:
@@ -20,8 +21,9 @@ outils:
 
 documents1:
   order: 20
-  label: Documents du groupe - par nom
+  label: Documents du groupe
   short: Docs
+  mode: basic
   type: files
   params:
     url: 'http://srvweb/documents/index.php?'
@@ -53,6 +55,7 @@ routagetel:
   order: 5
   label: Annuaire IP
   short: Tél
+  mode: basic
   type: mysql
   params:
     connexion:
@@ -70,8 +73,9 @@ routagetel:
 
 providers:
   order: 10
-  label: Fournisseurs
+  label: Base Fournisseurs
   short: Fourn.
+  mode: basic
   type: mysql
   params:
     connexion:
@@ -93,6 +97,7 @@ agences:
   order: 12
   label: Informations agences
   short: Agences
+  mode: scroll
   type: mssql
   params:
     connexion:

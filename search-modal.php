@@ -40,9 +40,15 @@
 	  			<div class="tab-content">
 
 	<?php foreach ( $results as $result ): ?>
-	
-					<div class="tab-pane fade" id="tab-<?= $result['order'] ?>">
-					
+		
+		<?php if (! isset($prem) ): ?>
+					<div class="tab-pane fade in active"
+		<?php else: ?> 
+					<div class="tab-pane fade"
+		<?php endif; ?>
+						 id="tab-<?= $result['order'] ?>">
+		
+		<?php $prem = true; ?>					
 			  	  	  <div class="panel panel-success">
 			  	  	  
 			  	  	   <div class="panel-heading">
@@ -96,7 +102,7 @@
 						            			</a>
 						            		</td>
 				<?php else: ?>
-											<td><?= substr($value, 0, 60) ?></td>
+											<td><?= substr($value, 0, 80) ?></td>
 				<?php  endif; ?>
 				
 			<?php endforeach; ?>

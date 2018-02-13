@@ -47,8 +47,8 @@ if( !isset($_SESSION['granted'])) {
     <link href="bootstrap/css/navbar.css" rel="stylesheet">
     
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
- 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/sc-1.4.4/datatables.min.css"/>
-    
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
+ 
     <style type="text/css">
 	*, *:before, *:after {box-sizing:  border-box !important;}
 	
@@ -267,7 +267,8 @@ if( !isset($_SESSION['granted'])) {
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
     <script type='text/javascript' src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/sc-1.4.4/datatables.min.js"></script>
+ 	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>   
+ 
  
     <script src="/portail/outils/conges/js/global.js"></script>
     <script src="/portail/outils/conges/library/jquery/ui/datepicker-fr.js"></script>
@@ -316,25 +317,50 @@ if( !isset($_SESSION['granted'])) {
 	    });
 		$('#search').focus();
 
-	<?php if ( ! empty($query) ): ?> 
+	<?php if ( isset($_GET['search']) ): ?> 
 
-	    $('.table').DataTable( {
-	
-	    	dom: 'tip',
-// 	    	scroller: true,
-// 	    	scrollX: true,
-// 	    	scrollY: '500px',
-			responsive: {
-				details:true
-			},
-	        pagingType: 'full',
-	        pageLength: 10,
-	        language: {
-	            url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json"
-	        }
-		});
+	  <?php foreach ( $targets as $search ): ?>
+
+	    <?php if ($search['mode'] == 'basic' ): ?>
+
+		    $('#data-search-<?= $search['order'] ?>').DataTable( {
+		
+		    	dom: 'tip',
+		        pagingType: 'simple',
+		        pageLength: 10,
+		        language: {
+		            url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json"
+		        }
+			});
+	    <?php elseif ($search['mode'] == 'scroll' ): ?>
+			
+		    $('#data-search-<?= $search['order'] ?>').DataTable( {
+		
+		    	dom: 'tp',
+		        scrollY: '500px',
+		        scrollCollapse: true,
+		        paging: false,
+		        language: {
+		            url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json"
+		        }
+			});
+		<?php endif; ?>
+		
+	  <?php endforeach; ?>
 
 		$('#searchModal').modal({backdrop: 'static'});
+
+// 		$('.table tbody tr').click(function() {
+
+// 			$(this).parent().children('tr.danger').removeClass('danger');
+// 			$(this).addClass('danger');
+// 		});
+
+//TEST
+// 		$('.nav-tabs').children('li').click(function(){alert('go');});;
+// 		$('.table thead tr').children('th:first').click(function(){alert('go');});;
+// 		$('.table').DataTable().order([0, 'desc']).draw();
+// 		$('.table').DataTable().colReorder.reset();
 
 	<?php endif; ?>
 		
