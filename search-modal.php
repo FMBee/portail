@@ -27,11 +27,16 @@
 				
 	<?php foreach ( $results as $result ): ?>
 	
+		<?php if ( !isset($prem1) ): ?>
+				  <li role="presentation" class="active">
+		<?php else: ?> 
 				  <li role="presentation">
+		<?php endif; ?>
 				  	<a href="#tab-<?= $result['order'] ?>" data-toggle="tab">
 				  	<?= $result['short'] .' (' .count($result['results']) .')' ?>
 				  	</a>
 				  </li>
+		<?php $prem1 = true; ?>					
 
 	<?php endforeach; ?>			
 
@@ -41,14 +46,14 @@
 
 	<?php foreach ( $results as $result ): ?>
 		
-		<?php if (! isset($prem) ): ?>
+		<?php if ( !isset($prem2) ): ?>
 					<div class="tab-pane fade in active"
 		<?php else: ?> 
 					<div class="tab-pane fade"
 		<?php endif; ?>
 						 id="tab-<?= $result['order'] ?>">
 		
-		<?php $prem = true; ?>					
+		<?php $prem2 = true; ?>					
 			  	  	  <div class="panel panel-success">
 			  	  	  
 			  	  	   <div class="panel-heading">
@@ -114,7 +119,6 @@
 						  </div>	
  					  		  	  	   
 			  	  	   </div>
-			  	  	   
 			  	  	  </div>
 					</div>
 					

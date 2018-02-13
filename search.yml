@@ -1,6 +1,16 @@
+#####
+# Options
+#
+# order: ordre d'affichage des onglets
+# label: titre des résultats
+# short: étiquette de l'onglet
+# mode: type de tableau = basic ou scroll (horizontal)
+# type: type de recherche = mssql, mysql, files
+# params: paramètres de la recherche
+#
 
 outils:
-  order: 15
+  order: 5
   label: Outils du portail
   short: Outils
   mode: basic
@@ -20,7 +30,7 @@ outils:
       lien: ':Liens'
 
 documents1:
-  order: 20
+  order: 15
   label: Documents du groupe
   short: Docs
   mode: basic
@@ -52,7 +62,7 @@ documents1:
 #      title: 'Titre'
     
 routagetel:
-  order: 5
+  order: 10
   label: Annuaire IP
   short: Tél
   mode: basic
@@ -67,12 +77,12 @@ routagetel:
     search: where
     view: speeddial
     fields: 
+      comment: 'Libellé'
       number: 'Abrégé'
       dial_number: 'Numéro'
-      comment: 'Libellé'
 
 providers:
-  order: 10
+  order: 20
   label: Base Fournisseurs
   short: Fourn.
   mode: basic
@@ -94,7 +104,7 @@ providers:
       mail: 'Email'
       
 agences:
-  order: 12
+  order: 25
   label: Informations agences
   short: Agences
   mode: scroll

@@ -86,25 +86,30 @@ if( !isset($_SESSION['granted'])) {
  width:  100%; 
 }
     </style>
+    
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    
 <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<!-- Piwik -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//10.106.76.115/piwik/";
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId', '1']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
 
-<noscript><p><img src="//10.106.76.115/piwik/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
-<!-- End Piwik Code -->
+	<!-- Piwik -->
+	<script type="text/javascript">
+	  var _paq = _paq || [];
+	  _paq.push(['trackPageView']);
+	  _paq.push(['enableLinkTracking']);
+	  (function() {
+	    var u="//10.106.76.115/piwik/";
+	    _paq.push(['setTrackerUrl', u+'piwik.php']);
+	    _paq.push(['setSiteId', '1']);
+	    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+	    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+	  })();
+	</script>
+	
+	<noscript><p><img src="//10.106.76.115/piwik/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+	<!-- End Piwik Code -->
  
   </head>
 
@@ -147,7 +152,7 @@ if( !isset($_SESSION['granted'])) {
 			  <li>
 			   <form class="navbar-form navbar-left" action="index.php" method="get">
 				<input type="text" class="form-control" 
-				placeholder="<?php if( $research ){echo $_GET['search'];}else{echo 'Rechercher';}?>" 
+				placeholder="<?php if( $research ) {echo $_GET['search']; }else{ echo'Rechercher';} ?>" 
 				name="search" id="search" autocomplete="off" >
 			   </form>
 			  </li>
@@ -204,7 +209,7 @@ if( !isset($_SESSION['granted'])) {
 		}		
 		//Des commandes INOWEB
 		if($page == 1){
-// 			include('inc/cde_inoweb.php');	//:CODE
+			include('inc/cde_inoweb.php');	//:CODE
 		}	
 		//Si c'est l'informatique, on affiche l'etat des imports comptables et encours
 		if($page == 5){
@@ -236,7 +241,7 @@ if( !isset($_SESSION['granted'])) {
 			echo "<div class='tab-pane' id='raccourcis'>";
 			echo "</div>";
 			echo "<div class='tab-pane active' id='container_presence'>";
-// 			include('outils/conges/absences.php');	//:CODE
+			include('outils/conges/absences.php');	//:CODE
 			echo "</div>";
 			echo "<div class='tab-pane' id='stats'>";
 			echo "</div>";
@@ -348,13 +353,11 @@ if( !isset($_SESSION['granted'])) {
     <!-- Le javascript
     ================================================== -->
 	
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
     <script type='text/javascript' src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
- 	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>   
- 
     <script src="/portail/outils/conges/js/global.js"></script>
     <script src="/portail/outils/conges/library/jquery/ui/datepicker-fr.js"></script>
+
+ 	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>   
  
 	<script>
 	

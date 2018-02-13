@@ -142,18 +142,17 @@
 		$results =  $query->fetchAll(PDO::FETCH_ASSOC);
 		$data = array();
 		
-		foreach ( $results as $result ) {	// recherche des labels
+		foreach ( $results as $result ) {	// recherche des labels et decoding
 			
 			$ligne = array();
 			
 			foreach ( $result as $key => $value ) {
 				
-				$ligne[ $params['fields'][$key] ] = $value;
+				$ligne[ $params['fields'][$key] ] = utf8_encode($value);
 			}
 			$data[] = $ligne;
 		}
 		return $data;
 	}
 
-?>
 	
