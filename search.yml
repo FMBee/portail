@@ -85,7 +85,7 @@ providers:
   order: 20
   label: Base Fournisseurs
   short: Fourn.
-  mode: basic
+  mode: scroll
   type: mysql
   params:
     connexion:
@@ -95,13 +95,19 @@ providers:
       username: root
       userpwd: eclipse
     search: where
-    view: provider
+    clause: "c_agence = '$agence'"
+    view: providers_vw
     fields: 
-      nom: 'Nom'
-      tel: 'Tél.'
-      fax: 'Fax'
-      contact1: 'Contact'
-      mail: 'Email'
+      nom: 'Fournisseur'
+      atel: 'Tél. AG'
+      afax: 'Fax AG'
+      compte_liv: 'N° CpteLiv'
+      acontact: 'Contact AG'
+      amail: 'Email AG'
+      ftel: 'Tél. FO'
+      ffax: 'Fax FO'
+      fcontact: 'Contact FO'
+      fmail: 'Email FO'
       
 agences:
   order: 25

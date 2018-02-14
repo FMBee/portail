@@ -423,6 +423,7 @@ if( !isset($_SESSION['granted'])) {
 		    $('#data-search-<?= $search['order'] ?>').DataTable( {
 		
 		    	dom: 'tp',
+		    	scrollX: true,
 		        scrollY: '500px',
 		        scrollCollapse: true,
 		        paging: false,

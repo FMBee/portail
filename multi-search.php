@@ -9,7 +9,8 @@
 	$targets = yaml_parse_file($path);
 // print_r($targets);
 
-	$seek = $_GET['search'];
+	$seek = $_POST['search'];
+	$agence = $_GET['agence'];
 
 	$a = array('À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ð', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ø', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'ß', 'à', 'á', 'â', 'ã', 'ä', 'å', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', 'ø', 'ù', 'ú', 'û', 'ü', 'ý', 'ÿ', 'Ā', 'ā', 'Ă', 'ă', 'Ą', 'ą', 'Ć', 'ć', 'Ĉ', 'ĉ', 'Ċ', 'ċ', 'Č', 'č', 'Ď', 'ď', 'Đ', 'đ', 'Ē', 'ē', 'Ĕ', 'ĕ', 'Ė', 'ė', 'Ę', 'ę', 'Ě', 'ě', 'Ĝ', 'ĝ', 'Ğ', 'ğ', 'Ġ', 'ġ', 'Ģ', 'ģ', 'Ĥ', 'ĥ', 'Ħ', 'ħ', 'Ĩ', 'ĩ', 'Ī', 'ī', 'Ĭ', 'ĭ', 'Į', 'į', 'İ', 'ı', 'Ĳ', 'ĳ', 'Ĵ', 'ĵ', 'Ķ', 'ķ', 'Ĺ', 'ĺ', 'Ļ', 'ļ', 'Ľ', 'ľ', 'Ŀ', 'ŀ', 'Ł', 'ł', 'Ń', 'ń', 'Ņ', 'ņ', 'Ň', 'ň', 'ŉ', 'Ō', 'ō', 'Ŏ', 'ŏ', 'Ő', 'ő', 'Œ', 'œ', 'Ŕ', 'ŕ', 'Ŗ', 'ŗ', 'Ř', 'ř', 'Ś', 'ś', 'Ŝ', 'ŝ', 'Ş', 'ş', 'Š', 'š', 'Ţ', 'ţ', 'Ť', 'ť', 'Ŧ', 'ŧ', 'Ũ', 'ũ', 'Ū', 'ū', 'Ŭ', 'ŭ', 'Ů', 'ů', 'Ű', 'ű', 'Ų', 'ų', 'Ŵ', 'ŵ', 'Ŷ', 'ŷ', 'Ÿ', 'Ź', 'ź', 'Ż', 'ż', 'Ž', 'ž', 'ſ', 'ƒ', 'Ơ', 'ơ', 'Ư', 'ư', 'Ǎ', 'ǎ', 'Ǐ', 'ǐ', 'Ǒ', 'ǒ', 'Ǔ', 'ǔ', 'Ǖ', 'ǖ', 'Ǘ', 'ǘ', 'Ǚ', 'ǚ', 'Ǜ', 'ǜ', 'Ǻ', 'ǻ', 'Ǽ', 'ǽ', 'Ǿ', 'ǿ');
 	$b = array('A', 'A', 'A', 'A', 'A', 'A', 'AE', 'C', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'D', 'N', 'O', 'O', 'O', 'O', 'O', 'O', 'U', 'U', 'U', 'U', 'Y', 's', 'a', 'a', 'a', 'a', 'a', 'a', 'ae', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'n', 'o', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'u', 'y', 'y', 'A', 'a', 'A', 'a', 'A', 'a', 'C', 'c', 'C', 'c', 'C', 'c', 'C', 'c', 'D', 'd', 'D', 'd', 'E', 'e', 'E', 'e', 'E', 'e', 'E', 'e', 'E', 'e', 'G', 'g', 'G', 'g', 'G', 'g', 'G', 'g', 'H', 'h', 'H', 'h', 'I', 'i', 'I', 'i', 'I', 'i', 'I', 'i', 'I', 'i', 'IJ', 'ij', 'J', 'j', 'K', 'k', 'L', 'l', 'L', 'l', 'L', 'l', 'L', 'l', 'l', 'l', 'N', 'n', 'N', 'n', 'N', 'n', 'n', 'O', 'o', 'O', 'o', 'O', 'o', 'OE', 'oe', 'R', 'r', 'R', 'r', 'R', 'r', 'S', 's', 'S', 's', 'S', 's', 'S', 's', 'T', 't', 'T', 't', 'T', 't', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'W', 'w', 'Y', 'y', 'Y', 'Z', 'z', 'Z', 'z', 'Z', 'z', 's', 'f', 'O', 'o', 'U', 'u', 'A', 'a', 'I', 'i', 'O', 'o', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'A', 'a', 'AE', 'ae', 'O', 'o');
@@ -36,7 +37,7 @@
 					
 					case 'where':
 						
-						$data = sqlWhere($pdo, $params, $seek);
+						$data = sqlWhere($pdo, $params);
 						break;
 					
 					case 'match':
@@ -71,7 +72,7 @@
 					
 					case 'where':
 						
-						$data = sqlWhere($pdo, $params, $seek);
+						$data = sqlWhere($pdo, $params);
 						break;
 					
 					case 'match':
@@ -118,18 +119,28 @@
 	/*
 	 * clause WHERE classique
 	 */
-	function sqlWhere($pdo, $params, $seek) {
+	function sqlWhere($pdo, $params) {
+		
+		global $agence, $seek;
 		
 		$fields = '';
-		$where = '';
+		$where = '(';
 			
 		foreach ( $params['fields'] as $key => $value ) {
 		
 			$where .= "{$key} LIKE '%{$seek}%' OR ";
 			$fields .= "{$key}, ";
 		}
-		$where = substr($where, 0, -3);
+		$where = substr($where, 0, -3) .')';
 		$fields = substr($fields, 0, -2);
+		
+		if ( !empty($params['clause']) ) {
+			
+			$clause = str_replace(	['$agence', '$seek'],
+									[$agence, $seek],
+									$params['clause'] );
+			$where .= ' AND ' .$clause;
+		}
 			
 		$sql = "
 		SELECT {$fields} FROM {$params['view']}
@@ -155,4 +166,18 @@
 		return $data;
 	}
 
+	
+	
+	/*
+create or replace view providers_vw as
+select
+a.c_agence, a.nom_agence,
+pa.tel as atel, pa.fax as afax, pa.contact1 as acontact, pa.mail as amail, pa.compte_liv, pa.compte_fac,
+p.nom, p.adresse, p.cp, p.ville, p.tel as ftel, p.fax as ffax, p.mail as fmail, p.contact1 as fcontact, p.flag as fflag
+
+from prov_agence pa
+join provider p on pa.id_fourn = p.id
+join agences a on pa.id_agence = a.id_agence
+where isnull(p.flag)
+	 */
 	

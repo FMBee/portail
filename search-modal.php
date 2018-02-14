@@ -62,10 +62,9 @@
 			  	  	   
 			  	  	   <div class="panel-boby">
  
-		                 <div class="dataTable_wrapper">
-
-		                   <table id="data-search-<?= $result['order'] ?>" width="100%" 
-		                   		class="nowrap table table-striped table-bordered table-hover" >
+		                   <table id="data-search-<?= $result['order'] ?>" 
+		                   		width="100%" cellspacing="0" 
+		                   		class="display nowrap table table-striped table-bordered table-hover" >
 
 								<thead>
 								  <tr>
@@ -116,7 +115,6 @@
 								
 								</tbody>
 							</table>
-						  </div>	
  					  		  	  	   
 			  	  	   </div>
 			  	  	  </div>
