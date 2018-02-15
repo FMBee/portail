@@ -1,5 +1,7 @@
 <?php
 
+	error_reporting(0);
+	
 	include 'multi-search.php';
 
 ?>
@@ -23,11 +25,19 @@
 <!--       <div class="row" style="width:1024px;"> -->
  
  			<br />
-			<div class="col-lg-12">
-			  <h3>
-                <label><b>Portail Intranet - Garrigue</b></label>
+			<div class="col-lg-10">
+			  <h3 class="text-primary">
+                <span><b>Portail Intranet - Garrigue</b></span>
 	          </h3>
 	        </div>
+			<div class="col-lg-2">
+	          <a href="Research help.pdf" target="_blank">
+                <span class="pull-right">
+                    <i class="glyphicon glyphicon-info-sign" aria-hidden="true"></i>
+                    Consultez l'aide
+                </span>
+              </a>
+			</div>
 
 			<div class="col-lg-12">
 				<div class="col-md-8">
@@ -40,6 +50,7 @@
 				  	<input type="text" class="form-control" placeholder="Rechercher"
 				  		   id="search" name="search" required>
 				  </form>
+				  
 				</div>
 				
 	        </div>
@@ -102,11 +113,11 @@
 
 		<?php foreach ( $result['results'][0] as $label => $value ): ?>
 			
-			<?php if ( substr($label, 0, 1) == '_' ): ?>
+			<?php if ( substr($label, 0, 1) == $_hide ): ?>
 			
 									<th class="hidden"><?= $label ?></th>
 			
-			<?php elseif ( substr($label, 0, 1) == ':' ): ?>
+			<?php elseif ( substr($label, 0, 1) == $_link ): ?>
 			
 									<th><?= substr($label, 1) ?></th>
 			<?php else: ?>
@@ -125,11 +136,11 @@
 		
 			<?php foreach ( $ligne as $label => $value ): ?>
 									
-				<?php if ( substr($label, 0, 1) == '_' ): ?>
+				<?php if ( substr($label, 0, 1) == $_hide ): ?>
 									
 											<td class="hidden"><?= $value ?></td>
 				
-				<?php elseif ( substr($label, 0, 1) == ':' ): ?>
+				<?php elseif ( substr($label, 0, 1) == $_link ): ?>
 									
 											<td>
 						            			<a href="<?= $value ?>" target="blank">
