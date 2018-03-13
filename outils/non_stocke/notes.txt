@@ -1,0 +1,60 @@
+
+Pièces :
+
+lister les articles
+
+  - hors familles ('01','02','03','04','10','14','51')
+  - hors marque 'TTOP'
+  - de l'agence A
+  - stockés au dépôt de A
+  - dont le stock est non nul
+  - non trouvés dans les stock mini <> 0
+  - non trouvés dans les 37 derniers jours de facturation
+  - non trouvés dans les 37 derniers jours de livraison
+  - non trouvés dans les 37 derniers jours de stats (genc)
+  - non trouvés dans les 37 derniers jours de stats (gen)
+  - réceptionnés entre -37 et -7 jours
+  
+  
+  
+Pneus :
+
+lister les articles
+
+  - des familles ('01','02','03','04')
+  - hors marques ('MICH','GOAR','DUNL','FULD') 
+  		des categories ('TH','CH')
+  			de la famille '01'
+  - de l'agence A
+  - stockés au dépôt de A
+  - dont le stock est non nul
+  - non trouvés dans les stock mini <> 0
+  - non trouvés dans les 37 derniers jours de facturation
+  - non trouvés dans les 37 derniers jours de livraison
+  - non trouvés dans les 37 derniers jours de stats (genc)
+  - non trouvés dans les 37 derniers jours de stats (gen)
+  - réceptionnés entre -37 et -7 jours
+  
+  
+select d.sfamArt, d.largeur, d.serie, d.diametre, d.indCharge, d.indVitesse, d.xl, d.rof, c.gamme_id, cd.stockMini, a.codeAgence
+    from dimension d
+    join categorie_dimension cd on d.id = cd.dimension_id 
+    join categorie c on cd.categorie_id = c.id
+    join categorie_agence ca on c.id = ca.categorie_id
+    join agence a on ca.agence_id = a.id
+    where codeAgence='GOUR'  and largeur='225' and serie='65' and diametre='16' and indVitesse='R'
+    order by d.sfamArt, d.largeur, d.serie, d.diametre, d.indCharge, d.indVitesse, d.xl, d.rof
+    
+SELECT * FROM `dimension` where largeur='225' and serie='65' and diametre='16' and indVitesse='R' and sfamArt='CE'
+ORDER BY `dimension`.`sfamArt` ASC
+
+select d.sfamArt, d.largeur, d.serie, d.diametre, d.indCharge, d.indVitesse, d.rof, d.xl, m.codeMarque, cd.stockMini, a.codeAgence
+    from dimension d
+    join categorie_dimension cd on d.id = cd.dimension_id 
+    join categorie c on cd.categorie_id = c.id
+    join categorie_agence ca on c.id = ca.categorie_id
+    join agence a on ca.agence_id = a.id
+    join marque_gamme mg on c.gamme_id = mg.gamme_id
+    join marque m on mg.marque_id = m.id
+     where codeAgence='GOUR'  and largeur='225' and serie='65' and diametre='16' and indVitesse='R'
+ORDER BY `m`.`codeMarque` ASC
