@@ -7,7 +7,7 @@
     //Requete Pieces
     
     echo "<div class='alert alert-success'>Télécharger le tableau <strong><a href='inc/excel.php?agence=".$c_agence."'>Excel</a></strong></div>";
-    echo "<h2>Pièces</h2>";
+    echo "<br /><h2>Pièces</h2>";
     
     if ( ($results1 = request($sqldb, $sql_pieces)) === false ) {
         
@@ -23,7 +23,7 @@
     
     // Requete Pneus
     
-    echo "<h2>Pneus</h2>";
+    echo "<br /><h2>Pneus</h2>";
     
     // pneus en stock
     if ( ($data1 = request($sqldb, $sql_pneus1)) === false ) {
@@ -61,10 +61,11 @@
                 
                 return false;
             }
-            // la dimension est gérée
+            // la dimension/marque est gérée en stock mini pour l'agence
             if ( count($data3) > 0 ) {
 
-                if ( $data3[0]['stockMini'] = 0 ) {
+                // ..mais la valeur est nulle
+                if ( $data3[0]['stockMini'] == 0 ) {
                 
                     $results2[] = $ligne;
                 }

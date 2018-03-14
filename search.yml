@@ -70,7 +70,7 @@ routagetel:
   params:
     connexion:
       port: null
-      host: 10.110.76.246
+      host: 10.110.99.246
       basename: kiplink
       username: speeddial
       userpwd: speedpass
@@ -123,6 +123,7 @@ agences:
       username: sa
       userpwd: Logiwin06
     search: where
+    clause: "c_agence not in ('SIAC','SICA','SIDI','SIGC','SIGM','SIL2','SILG','SIMA','SIPL','SISO','SITC','AGIP', 'XAVC','TEDE')"
     view: agence
     fields: 
       nom_agence: 'Nom'

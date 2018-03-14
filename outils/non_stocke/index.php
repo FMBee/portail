@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+// error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 include('inc/connexion.php');
 
 ?>
@@ -79,7 +79,8 @@ include('inc/connexion.php');
   </head>
 
   <body>
-	<div class="container">
+  
+   <div class="container">
     <nav class="navbar navbar-default" role="navigation">
      
         <div class="navbar-header">
@@ -94,8 +95,8 @@ include('inc/connexion.php');
               <!--Un lien ici se mettra dans la barre en haut a droite -->
 			  
 			  <a href="http://10.106.76.115" target='_blank'><img src='../../bootstrap/img/logo_garrigue.png' alt='Portail Groupe Garrigue'> </a>
-            </p>
-        </nav>
+        </p>
+    </nav>
     
    
 
@@ -128,7 +129,7 @@ include('inc/connexion.php');
 
     
 	</div><!--/.fluid-container-->
-	</div><!--/.initial-container-->
+   </div><!--/.initial-container-->
 
     <script type='text/javascript' src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 	

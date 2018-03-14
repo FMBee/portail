@@ -25,12 +25,12 @@
 
         $worksheet->write(1, 0, 'Pas de résultats pour PNEUS');
     }
-    	
-    $workbook->close();
-    $nom_fichier = "Non_Stockés_{$_GET['agence']}_" .date('Y-m-d') .".xls";
     
-    header("Content-Type: application/x-msexcel; name=\"$nom_fichier\"");
-    header("Content-Disposition: inline; filename=\"$nom_fichier\"");
+    $workbook->close();
+    
+    $nom_fichier = "Non_Stockes_{$_GET['agence']}_" .date('Y-m-d') .".xls";
+    header("Content-Type: application/x-msexcel; name='{$nom_fichier}'");
+    header("Content-Disposition: inline; filename='{$nom_fichier}'");
     $fh=fopen($fname, "rb");
     fpassthru($fh);
     unlink($fname);
@@ -41,7 +41,7 @@
     
         if ( count($results) > 0 ) {
             
-            $lig = 0;
+            $lig = 1;
             $col = 0;
             // entetes
             foreach ( array_keys($results[0]) as $key ) {
