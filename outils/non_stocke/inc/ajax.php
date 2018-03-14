@@ -15,7 +15,7 @@
     }
     if (count($results1) > 0) {
         
-        affResults($results1);
+        affResults($results1, 1);
     }
     else{
         echo "<div class='alert alert-danger'>Pas de pièces pour l'agence <strong>".$c_agence."</strong></div>";
@@ -42,21 +42,22 @@
             
                 return false;
             }
+            $data2 = $data2[0];
+            array_walk($data2, 'trim_value');
 
             // stock mini de la dimension
             if ( ($data3 = request($mysqldb, $sql_pneus3, array(
-                                                trim($data2[0]['c_sfam_art']),     
-                                                trim($data2[0]['largeur']),     
-                                                trim($data2[0]['serie']),     
-                                                trim($data2[0]['diam']),     
-                                                trim($data2[0]['ind_charge']),     
-                                                trim($data2[0]['ind_vit']),     
-                                                trim($data2[0]['runflat']),     
-                                                trim($data2[0]['renforce']),     
-                                                trim($data2[0]['c_marque']),     
-                                                trim($c_agence)     
-                            ) 
-                    )
+                                                            $data2['c_sfam_art'],     
+                                                            $data2['largeur'],     
+                                                            $data2['serie'],     
+                                                            $data2['diam'],     
+                                                            $data2['ind_charge'],     
+                                                            $data2['ind_vit'],     
+                                                            $data2['runflat'],     
+                                                            $data2['renforce'],     
+                                                            $data2['c_marque'],     
+                                                            $c_agence ) 
+                                )
                 ) === false ) {
                 
                 return false;
@@ -64,19 +65,54 @@
             // la dimension/marque est gérée en stock mini pour l'agence
             if ( count($data3) > 0 ) {
 
-                // ..mais la valeur est nulle
+                // ..mais la valeur est nulle donc pas utilisée
                 if ( $data3[0]['stockMini'] == 0 ) {
                 
                     $results2[] = $ligne;
                 }
             }
             else{
-                $results2[] = $ligne;
+// echo "<p>NT:", print_r($data2['c_art']),"</p>";        
+                // on check le second indice de charge pour les C
+                if ( !empty($data2['ind_charge_2']) && in_array($data2['c_sfam_art'], ['CE', 'CH', 'CTS']) ) {
+                    
+// echo "<p>IC2:", print_r($data2['c_art']),"</p>";        
+                    $data2['ind_charge'] = $data2['ind_charge'].'/'.$data2['ind_charge_2'];
+
+                    if ( ($data3 = request($mysqldb, $sql_pneus3, array(
+                                                                    $data2['c_sfam_art'],     
+                                                                    $data2['largeur'],     
+                                                                    $data2['serie'],     
+                                                                    $data2['diam'],     
+                                                                    $data2['ind_charge'],     
+                                                                    $data2['ind_vit'],     
+                                                                    $data2['runflat'],     
+                                                                    $data2['renforce'],     
+                                                                    $data2['c_marque'],     
+                                                                    $c_agence ) 
+                                        )
+                        ) === false ) {
+                        
+                        return false;
+                    }
+                    // la dimension/marque est gérée en stock mini pour l'agence
+                    if ( count($data3) > 0 ) {
+        
+                        // ..mais la valeur est nulle donc pas utilisée
+                        if ( $data3[0]['stockMini'] == 0 ) {
+                        
+                            $results2[] = $ligne;
+                        }
+                    }
+                }
+                else{
+                    $results2[] = $ligne;
+                }
 // echo "<p>NT:", print_r($data2),"</p>";        
             }
         }
 // echo "<p>pneus2:", count($results), "</p>";        
-        affResults($results2);
+        affResults($results2, 2);
     }
     else{
         echo "<div class='alert alert-danger'>Pas de pneus pour l'agence <strong>".$c_agence."</strong></div>";
@@ -103,7 +139,7 @@ function request($pdo, $sql, $params=null ) {
     return $req->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function affResults($results) {
+function affResults($results, $tab) {
     
     $table = "<table class='table table-striped table-bordered'>";
     $table .= "<tr>";
@@ -117,10 +153,47 @@ function affResults($results) {
     foreach ( $results as $ligne )
     {
         $table .= "<tr>";
+        $col = 1;
         
         foreach ( $ligne as $value )
         {
-            $table .= "<td>".$value."</td>";
+            switch ($tab) {
+                
+                case 1:
+                    
+                    switch ($col) {
+                        
+                        case 4:
+                            $table .= "<td class='warning' style='text-align:center'>" .(int)$value ."</td>";
+                            break;
+                        
+                        case 5:
+                            $table .= "<td>" .date_format(date_create($value), 'd-m-Y') ."</td>";
+                            break;
+                            
+                        default:
+                            $table .= "<td>{$value}</td>";
+                    }
+                    break;
+                    
+                case 2:
+                    
+                    switch ($col) {
+                        
+                        case 5:
+                            $table .= "<td class='warning' style='text-align:center'>" .(int)$value ."</td>";
+                            break;
+                        
+                        case 6:
+                            $table .= "<td>" .date_format(date_create($value), 'd-m-Y') ."</td>";
+                            break;
+                            
+                        default:
+                            $table .= "<td>{$value}</td>";
+                    }
+                    break;
+            }
+            $col++;
         }
         $table .= "</tr>";
     }
@@ -129,5 +202,12 @@ function affResults($results) {
     echo $table;
 }
 
+/*
+ * usage: array_walk($array, 'trim_value');
+ */
+function trim_value(&$value) {
+    
+    $value = trim ( $value );
+}
 
 ?>

@@ -1,5 +1,6 @@
 <?php
-    
+
+    error_reporting(0);
     require_once "class.writeexcel_workbook.inc.php";
     require_once "class.writeexcel_worksheet.inc.php";
     
@@ -55,7 +56,9 @@
                 
                 foreach ( $ligne as $champs ) {
     
-           			$worksheet->write($lig, $col++, $champs);
+           			$worksheet->write($lig, $col++, 
+           			    ( strpos($champs, '00:00:00') ? date_format(date_create($champs), 'd-m-Y') : $champs )
+           			);
            		}
            		$lig++;
             }

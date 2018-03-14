@@ -1,7 +1,7 @@
 <?php
 
 $sql_pieces = "
-    select er.c_agence, s.c_art, a.lib_art, s.qte_en_stock, convert(varchar(20),MAX(er.date_rec),103) as date_rec 
+    select er.c_agence, s.c_art, a.lib_art, s.qte_en_stock, er.date_rec 
     from stock s
     join article a on a.c_art = s.c_art
     join lig_rec lr on lr.c_art = s.c_art
@@ -13,14 +13,14 @@ $sql_pieces = "
     and s.c_depot = er.c_agence
     and a.c_art not in 
     		(select distinct c_art as c_art2 from stock_art where c_depot = '$c_agence' and qte_mini <> 0 )
-    group by er.c_agence, s.c_art, a.lib_art, s.qte_en_stock
-    having MAX(date_rec) between GETDATE()-37 and GETDATE()-7
-    order by 4 desc, 2
+    group by er.c_agence, s.c_art, a.lib_art, s.qte_en_stock, er.date_rec
+    having MAX(er.date_rec) between GETDATE()-37 and GETDATE()-7
+    order by 5, 4 desc
 ";
 
 
 $sql_pneus1 = "
-    select c_agence, s.c_art, a.lib_art, a.ind_charge, a.ind_vit, s.qte_en_stock, convert(varchar(20),MAX(er.date_rec),103) as date_rec 
+    select er.c_agence, a.c_sfam_art, s.c_art, a.lib_art, s.qte_en_stock, er.date_rec 
     from stock s
     join lig_rec lr on lr.c_art = s.c_art
     join ent_rec er on er.n_br = lr.n_br
@@ -29,12 +29,13 @@ $sql_pneus1 = "
     and s.qte_en_stock <> 0
     and er.c_agence = '$c_agence'
     and s.c_depot = c_agence
-    group by er.c_agence, s.c_art, a.lib_art, a.ind_charge, a.ind_vit, s.qte_en_stock
-    having MAX(date_rec) between GETDATE()-37 and GETDATE()-7
-    order by 6 desc, 2
+    group by er.c_agence, a.c_sfam_art, s.c_art, a.lib_art, s.qte_en_stock, er.date_rec
+    having MAX(er.date_rec) between GETDATE()-37 and GETDATE()-7
+    order by 6, 5 desc
 ";
 $sql_pneus2 = "
-    select a.c_art, a.c_marque, a.c_sfam_art, a.largeur, a.serie, a.diam, a.ind_charge, a.ind_vit, a.runflat, a.renforce 
+    select a.c_art, a.c_marque, a.c_sfam_art, a.largeur, a.serie, a.diam, a.ind_charge, a.Ind_charge_jumelee as ind_charge_2,
+            a.ind_vit, a.runflat, a.renforce 
     from  article a
     where a.c_art = ?
 ";
@@ -50,6 +51,7 @@ $sql_pneus3 = "
     where d.sfamArt = ? and d.largeur = ? and d.serie = ? and d.diametre = ? and d.indCharge = ? and d.indVitesse = ? 
     and d.rof = ? and d.xl = ? and m.codeMarque = ? and a.codeAgence = ?
 ";
+
 
 
 

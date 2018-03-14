@@ -1,16 +1,19 @@
 <?php
 
 // error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+error_reporting(0);
+
 include('inc/connexion.php');
 
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="utf-8">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta http-equiv="refresh" content="7200">
-    <title>Articles non stocké</title>
+    <title>Articles non stockés</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -124,7 +127,7 @@ include('inc/connexion.php');
      <!--<hr>-->
 
       <footer>
-        <p>&copy; Univers Pneus 2014</p>
+        <p>&copy; Univers Pneus 2018</p>
       </footer>
 
     
