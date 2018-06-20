@@ -119,8 +119,11 @@ switch ($page){
 
     <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
   </head>
-  <body><h3>Gestion des logs</h3>
+  <body>
+  <div class="container">
+  <h3>Gestion des logs</h3>
   <button onclick='goBack()'>Retour</button>
+  <br /><br />
 
 <?php
 
@@ -136,5 +139,5 @@ while($data = mysql_fetch_assoc($req)){
 	echo '</tr>';
 }
 echo '</table>';
-echo '</body></html>';
+echo '</div></body></html>';
 ?>
