@@ -147,7 +147,7 @@ if( !isset($_SESSION['granted'])) {
 					}
 			  ?>
 			  <li>
-			   <form class="navbar-form navbar-left" action="research.php?agence=<?= $c_agence ?>" method="post" target="_blank">
+			   <form class="navbar-form navbar-left" action="research.php?agence=<?= $c_agence ?>&ip=<?= $ip ?>" method="post" target="_blank">
 			   
 				  <input type="text" class="form-control" placeholder="Rechercher" 
 						 name="search" id="search" autocomplete="off" required>
