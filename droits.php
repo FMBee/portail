@@ -1,14 +1,14 @@
 <?php
 // ------ récupération du nom d'utilisateur ------ //
 // $username = getLogin();
-$username = 'fredericm';	//:CODE
+$username = 'fredericm';	//CODE
 
 if (!$username)     die('Problème d\'authentification ! (1)');
 
 $_SESSION['username'] = $username;
 
 // $ip=$_SERVER['REMOTE_ADDR'];
-$ip='127.0.0';	//:CODE
+$ip='127.0.0';	//CODE
 $ip_temp=explode(".",$ip);
 
 //Definition des droits de l'utilisateur qui se connecte
@@ -65,6 +65,7 @@ function getLogin() {
     define('_NTLM_PROXY',2); 
     
     $infos = getInfosFromNTLM();
+
     switch ($infos) {
         case _NTLM_PROXY:
             die('No proxy for ntlm');
@@ -81,11 +82,13 @@ function getLogin() {
 }
 
 function getInfosFromNTLM() {
+
     if (!empty($_SERVER['HTTP_VIA'])) {
         return _NTLM_PROXY;
     }
     $header = apache_request_headers();
     $auth = isset($header['Authorization']) ? $header['Authorization'] : null;
+
     if (is_null($auth)) {
         return unAuthorized();
     }
@@ -96,6 +99,8 @@ function getInfosFromNTLM() {
     if ($auth && (substr($auth,0,4) == 'NTLM')) {
         $c64 = base64_decode(substr($auth,5));
         $state = ord($c64{8});
+        $GLOBALS['auth_seq'] = 'auth:' .print_r($c64, true) .' / state:' .print_r($state, true);
+        
         switch ($state) {
             case 1:
                 $chrs = array(0,2,0,0,0,0,0,0,0,40,0,0,0,1,130,0,0,0,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0);
@@ -119,6 +124,7 @@ function getInfosFromNTLM() {
 }
 
 function unAuthorized($msg=null) {
+    
     $ntlm = 'WWW-Authenticate: NTLM';
     if ($msg) {
         $ntlm .= ' '.$msg;

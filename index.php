@@ -4,11 +4,15 @@ error_reporting(0);
 session_start();
 
 $nom_page = $_GET['page'];
+$auth_seq = 'no data';
 
 include('connexion.php');
 include('droits.php');
 include('agence.php');
 include('inc/wpcrypt.php');
+
+$date = date('Y-m-j H:i:s');
+mysql_query("INSERT into search_log VALUES ('','login','{$date}','{$ip}','0','{$auth_seq}')");
 
 if($c_agence != '') {
     $_SESSION['agence'] = $c_agence;
@@ -206,7 +210,7 @@ if( !isset($_SESSION['granted'])) {
 		}		
 		//Des commandes INOWEB
 		if($page == 1){
-// 			include('inc/cde_inoweb.php');	//:CODE
+// 			include('inc/cde_inoweb.php');	//CODE
 		}	
 		//Si c'est l'informatique, on affiche l'etat des imports comptables et encours
 		if($page == 5){
@@ -238,7 +242,7 @@ if( !isset($_SESSION['granted'])) {
 			echo "<div class='tab-pane' id='raccourcis'>";
 			echo "</div>";
 			echo "<div class='tab-pane active' id='container_presence'>";
-// 			include('outils/conges/absences.php');	//:CODE
+// 			include('outils/conges/absences.php');	//CODE
 			echo "</div>";
 			echo "<div class='tab-pane' id='stats'>";
 			echo "</div>";
@@ -340,6 +344,8 @@ if( !isset($_SESSION['granted'])) {
 
     <footer>
         <p class="text-center">&copy; Univers Pneus 2014</p>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <p><?= $GLOBALS['auth_seq'] ?>
     </footer>
 
     </div>

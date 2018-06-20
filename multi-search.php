@@ -127,7 +127,7 @@
 	// logs
 	include 'connexion.php';
 	$date = date('Y-m-j H:i:s');
-	mysql_query("INSERT into search_log VALUES ('','{$seek}','{$date}','{$ip}','{$totalRes}')");
+	mysql_query("INSERT into search_log VALUES ('','{$seek}','{$date}','{$ip}','{$totalRes}','')");
 	
 	
 	/*

@@ -204,7 +204,7 @@ if( !isset($_SESSION['granted'])) {
 		}		
 		//Des commandes INOWEB
 		if($page == 1){
-			include('inc/cde_inoweb.php');	//:CODE
+			include('inc/cde_inoweb.php');	//CODE
 		}	
 		//Si c'est l'informatique, on affiche l'etat des imports comptables et encours
 		if($page == 5){
@@ -236,7 +236,7 @@ if( !isset($_SESSION['granted'])) {
 			echo "<div class='tab-pane' id='raccourcis'>";
 			echo "</div>";
 			echo "<div class='tab-pane active' id='container_presence'>";
-			include('outils/conges/absences.php');	//:CODE
+			include('outils/conges/absences.php');	//CODE
 			echo "</div>";
 			echo "<div class='tab-pane' id='stats'>";
 			echo "</div>";
