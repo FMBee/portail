@@ -1,6 +1,7 @@
 <?php
 
 	error_reporting(0);
+	session_start();	
 	
 	include 'multi-search.php';
 
@@ -14,7 +15,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jqc-1.12.3/dt-1.10.16/fc-3.2.4/datatables.min.css"/>
-  
+<!--   <style type="text/css" class="init"> -->
+<!-- /* 	div.dataTables_wrapper { */ -->
+<!-- /* 		width: 800px; */ -->
+<!-- /* 		margin: 0 auto; */ -->
+<!-- /* 	} */ -->
+<!--   </style>   -->
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jqc-1.12.3/dt-1.10.16/fc-3.2.4/datatables.min.js"></script>
 
 </head>
@@ -167,7 +173,6 @@
 	  			</div>
   	  		  </div>
 	      </div>
-	
 <!-- 	</div>       -->
 </div>
 

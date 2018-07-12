@@ -126,9 +126,12 @@
 
 	// logs
 	include 'connexion.php';
-	$date = date('Y-m-j H:i:s');
-	mysql_query("INSERT into search_log VALUES ('','{$seek}','{$date}','{$ip}','{$totalRes}','')");
-	
+	$date = date('Y-m-d H:i:s');
+	$query = "INSERT into search_log 
+			  VALUES ('','search','{$date}','{$ip}','{$totalRes}','[{$seek}] / {$_SESSION['username']}')";
+	if (! mysql_query($query) ) {
+		echo print_r(mysql_error(), true) .$query;
+	}	
 	
 	/*
 	 * clause WHERE classique
