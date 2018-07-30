@@ -7,6 +7,7 @@
 # mode: type de tableau = basic ou scroll (horizontal)
 # type: type de recherche = mssql, mysql, files
 # params: paramètres de la recherche
+#    fields : préfixes _=caché / :=lien / ;=lien(détaillé)
 #
 
 outils:
@@ -41,7 +42,7 @@ documents1:
     fields: 
       nom: 'Nom'
       type: 'Type'
-      url: ':Liens'
+      url: ';Dossier'
 
 #documents2:
 #  order: 25
@@ -140,4 +141,30 @@ agences:
       ville: 'Ville'
       n_siret: 'Siret'
       divers: 'Divers'        
-            
+
+clients:
+  order: 35
+  label: Clients en Compte
+  short: Clients
+  mode: scroll
+  type: mssql
+  params:
+    connexion:
+      port: 1433
+      host: 10.106.76.111
+      basename: winpneu
+      username: sa
+      userpwd: Logiwin06
+    search: where
+    clause: "c_blocage_client = 'N' and c_compte = 'O'"
+    view: client
+    fields: 
+      c_client : 'Code'
+      c_fam_client : 'Fam'
+      c_sfam_client : 'sFam'
+      c_titre : 'Titre'
+      nom_client: 'Nom'
+      ville_fac : 'Ville'
+      c_agence: 'Agence'
+      tel_1: 'Tél.'
+      contact_divers_4: 'Mail'

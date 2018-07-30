@@ -126,6 +126,10 @@
 			<?php elseif ( substr($label, 0, 1) == $_link ): ?>
 			
 									<th><?= substr($label, 1) ?></th>
+									
+			<?php elseif ( substr($label, 0, 1) == $_linkv ): ?>
+			
+									<th><?= substr($label, 1) ?></th>
 			<?php else: ?>
 									<th><?= $label ?></th>
 			
@@ -153,8 +157,22 @@
 						            			lien
 						            			</a>
 						            		</td>
+						            		
+				<?php elseif ( substr($label, 0, 1) == $_linkv ): ?>
+				
+					<?php
+						$pos1 = strrpos($value, 'documents/')+9;
+						$pos2 = strrpos($value, '/');
+						$chemin = substr($value, $pos1, $pos2-$pos1);
+						$chemin = strlen($chemin) > 70 ? substr($chemin, 0 , 67).'...' : $chemin;
+					?>					
+											<td>
+						            			<a href="<?= $value ?>" data-toggle="tooltip" title="<?= $value ?>" target="blank">
+						            			<?= empty($chemin) ? 'lien' : $chemin ?>
+						            			</a>
+						            		</td>
 				<?php else: ?>
-											<td><?= substr($value, 0, 80) ?></td>
+											<td><?= substr($value, 0, 70) ?></td>
 				<?php  endif; ?>
 				
 			<?php endforeach; ?>
