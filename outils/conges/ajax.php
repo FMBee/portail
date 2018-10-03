@@ -1816,6 +1816,9 @@ switch($module) {
         	 * non utilisé : renvoyé sur cron/updateListEmployes
         	 */
             case 'majListEmployes':
+        	/*
+        	 * non utilisé : renvoyé sur cron/updateListEmployes
+        	 */
                 $db = new connec();
                 $dbExt = new connec_ext();
                 $functions = new functions();
@@ -1882,6 +1885,11 @@ switch($module) {
                     planning_facul	tinyint(1)	Oui 	NULL
                     planning_date_debut	date	Oui 	NULL
                     actif	tinyint(1)	Oui 	1
+                    
+                    ??:
+                    ALTER TABLE `conges`
+  					ADD CONSTRAINT `fk_conges_monteurs1` FOREIGN KEY (`idemploye`) 
+  					REFERENCES `monteurs` (`idmonteur`) ON DELETE NO ACTION ON UPDATE NO ACTION;
                     */
                     $sql = 'SELECT * FROM monteurs m WHERE c_magasinier=:monteur';
                     $result = $db->_fetch($sql, array('monteur' => $monteur));
@@ -1926,6 +1934,9 @@ SELECT * FROM `monteurs` where c_magasinier in ('EHAM', 'JRIT', 'LGON', 'LGUY', 
                         		 	'planning_facul' => 1
                         		 	)
                         		);
+                        /*
+                         * un planning par défaut sera crée par horaires.php si aucun n'existe
+                         */
                     }
 
 	                /* monteurs_plannings
@@ -1939,6 +1950,7 @@ SELECT * FROM `monteurs` where c_magasinier in ('EHAM', 'JRIT', 'LGON', 'LGUY', 
                     $sql = 'SELECT * FROM monteurs_plannings WHERE monteur=:monteur';
                     $liste = $db->_fetchAll($sql, array('monteur' => $monteur));
 
+                    // maj des plannings existants
                     if ( count($liste) > 0 ) {
                     	
                     	foreach ($liste as $result) {

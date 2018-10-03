@@ -181,7 +181,8 @@
 			
 			foreach ( $result as $key => $value ) {
 				
-				$ligne[ $params['fields'][$key] ] = utf8_encode($value);
+// 				$ligne[ $params['fields'][$key] ] = utf8_encode($value);
+				$ligne[ $params['fields'][$key] ] = ($value);
 			}
 			$data[] = $ligne;
 		}
