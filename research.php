@@ -130,6 +130,10 @@
 			<?php elseif ( substr($label, 0, 1) == $_linkv ): ?>
 			
 									<th><?= substr($label, 1) ?></th>
+
+			<?php elseif ( substr($label, 0, 1) == $_encode ): ?>
+			
+									<th><?= substr($label, 1) ?></th>
 			<?php else: ?>
 									<th><?= $label ?></th>
 			
@@ -171,6 +175,11 @@
 						            			<?= empty($chemin) ? 'lien' : $chemin ?>
 						            			</a>
 						            		</td>
+
+				<?php elseif ( substr($label, 0, 1) == $_encode ): ?>
+
+											<td><?= utf8_encode(substr($value, 0, 70)) ?></td>
+					
 				<?php else: ?>
 											<td><?= substr($value, 0, 70) ?></td>
 				<?php  endif; ?>
