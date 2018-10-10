@@ -173,3 +173,28 @@ clients:
       c_agence: 'Agence'
       tel_1: 'Tél.'
       contact_divers_4: 'Mail'
+      
+listing_ce:
+  order: 45
+  label: Listing CE
+  short: C.E.
+  mode: basic
+  type: mysql
+  params:
+    connexion:
+      port: 3306
+      host: 10.106.76.114
+      basename: listing_ce
+      username: upneu
+      userpwd: OW5V62N6M0W2GHiV
+    search: where
+    view: comites
+    fields: 
+      nom_ce: 'Nom du C.E.'
+      agence: 'Agence'
+      code_postal: 'CP'
+      ville: 'Ville'      
+      nom_resp: 'Responsable'      
+      tel_resp: 'Tél.'      
+      mail_resp: 'Mail'      
+            

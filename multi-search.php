@@ -34,12 +34,17 @@
 			case 'mysql':
 				
 				$connect = $params['connexion'];
-				
-				$pdo = new PDO(	'mysql:dbname=' .$connect['basename']
-								.';host=' .$connect['host'],
-								$connect['username'],
-								$connect['userpwd']
-				);
+			
+				try {
+					$pdo = new PDO(	'mysql:dbname=' .$connect['basename']
+									.';host=' .$connect['host'],
+									$connect['username'],
+									$connect['userpwd']
+					);
+				}
+				catch (Exception $e) {
+					print_r($connect);
+				}
 				
 				switch ( $params['search'] ) {
 					
